@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #my-table{
+        background-color: brown;
+        color: aliceblue;
+    }
+    .add-btn{
+        padding: 5px 20px;
+    background: antiquewhite;
+    }
+    #name{
+        margin-left: 65px
+    }
+    #class{
+        margin-top: 10px;
+    margin-left: 17px;
+}
+    
+    </style>
+</head>
+
+
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+    </head>
+
+    <body>
+        <table border="1px" cellpadding="5px" id="my-table" >
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Qualification</th>
+                <th>Remove</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>Rameez</td>
+                <td>12
+                    <sup>th</sup>
+                </td>
+                <td>
+                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Wakeel</td>
+                <td>10
+                    <sup>th</sup>
+                </td>
+                <td>
+                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Bilal</td>
+                <td>9
+                    <sup>th</sup>
+                </td>
+                <td>
+                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Anum</td>
+                <td>14
+                    <sup>th</sup>
+                </td>
+                <td>
+                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Sara</td>
+                <td>12
+                    <sup>th</sup>
+                </td>
+                <td>
+                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                </td>
+            </tr>
+        </table>
+        </br>
+        <div>        <label>Name</label>
+        <input type="text" name="name" id="name">
+        </br>
+        <label>Qualification</label>
+        <input type="text" name="name" id="class">
+    </br></br>
+        <button class="add-btn" onclick="addRow()">Add</button>
+    </div>
+
+
+        <script>
+            var value = 4;
+            function deleteRow(x) {
+                x.parentElement.parentElement.remove();
+             value--;
+            }
+
+            function addRow() {
+                var name = document.getElementById('name').value;
+                var clas = document.getElementById("class").value;
+                var table = document.getElementById('my-table');
+                var row = document.createElement('tr');
+                var index = document.createElement('td');
+                value++;
+                index.append(value)
+                var columnName = document.createElement('td');
+                var columnclas = document.createElement('td');
+                var button = document.createElement('td');
+debugger;
+
+                
+                columnName.innerHTML = name;
+                columnclas.innerHTML = clas;
+                button.innerHTML = '<input type="button" name="button"  value="delete row" onclick=" deleteRow(this) ">';
+                row.appendChild(index);
+                row.appendChild(columnName);
+                row.appendChild(columnclas);
+                row.appendChild(button);
+                table.appendChild(row);
+            }
+
+
+
+
+
+
+
+        </script>
+    </body>
+
+    </html>
+</body>
+
+</html>
