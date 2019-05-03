@@ -7,23 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-    #my-table{
-        background-color: brown;
-        color: aliceblue;
-    }
-    .add-btn{
-        padding: 5px 20px;
-    background: antiquewhite;
-    }
-    #name{
-        margin-left: 65px
-    }
-    #class{
-        margin-top: 10px;
-    margin-left: 17px;
-    outline: 0em;
-}
-    
+        #my-table tr:nth-of-type(2n+1) {
+            background-color: rgba(0, 0, 0, .05);
+        }
+
+        .thead {
+            background-color: #49636D !important;
+            color: #F5FAF4;
+        }
+
+        td {
+
+            text-align: center;
+            padding-top: 5px;
+        }
+
+        .add-btn {
+            padding: 8px 27px;
+            background: #3A8DD2;
+            color: #F0FAFA;
+            margin-left: 195px;
+        }
+
+        #name {
+            margin-left: 65px
+        }
+
+        #class {
+            margin-top: 10px;
+            margin-left: 17px;
+
+        }
     </style>
 </head>
 
@@ -40,23 +54,38 @@
     </head>
 
     <body>
-        <table border="1px" cellpadding="5px" id="my-table" >
-            <tr>
-                <th>Index</th>
+        <label>Name</label>
+        <input type="text" name="name" id="name">
+        </br>
+        <label>Qualification</label>
+        <input type="text" name="name" id="class">
+        </br>
+        </br>
+       
+
+        <button id="btnAdd" class="add-btn" onclick="addRow()">Add</button>
+        <button id="btnCancel" class="add-btn" onclick="ClearForm()">Cancel</button>
+        </br>
+        </br>
+
+
+
+        <table id="my-table">
+            <colgroup>
+                <col width="150px">
+                <col width="150px">
+                <col width="150px">
+                <col width="150px">
+                <col width="150px">
+            </colgroup>
+            <tr class="thead">
+                <th>Serial no</th>
                 <th>Name</th>
                 <th>Qualification</th>
                 <th>Remove</th>
+                <th>Update</th>
             </tr>
-            <tr>
-                <td>0</td>
-                <td>Rameez</td>
-                <td>12
-                    <sup>th</sup>
-                </td>
-                <td>
-                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
-                </td>
-            </tr>
+
             <tr>
                 <td>1</td>
                 <td>Wakeel</td>
@@ -64,7 +93,10 @@
                     <sup>th</sup>
                 </td>
                 <td>
-                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                    <input type="button" name="button" value="delete " onclick=" deleteRow(this) ">
+                </td>
+                <td>
+                    <input type="button" name="button" value="Edit " onclick=" editRow(this) ">
                 </td>
             </tr>
             <tr>
@@ -74,7 +106,10 @@
                     <sup>th</sup>
                 </td>
                 <td>
-                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                    <input type="button" name="button" value="delete " onclick=" deleteRow(this) ">
+                </td>
+                <td>
+                    <input type="button" name="button" value="Edit " onclick=" editRow(this) ">
                 </td>
             </tr>
             <tr>
@@ -84,7 +119,10 @@
                     <sup>th</sup>
                 </td>
                 <td>
-                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                    <input type="button" name="button" value="delete " onclick=" deleteRow(this) ">
+                </td>
+                <td>
+                    <input type="button" name="button" value="Edit " onclick=" editRow(this) ">
                 </td>
             </tr>
             <tr>
@@ -94,51 +132,138 @@
                     <sup>th</sup>
                 </td>
                 <td>
-                    <input type="button" name="button" value="delete row" onclick=" deleteRow(this) ">
+                    <input type="button" name="button" value="delete " onclick=" deleteRow(this) ">
+                </td>
+                <td>
+                    <input type="button" name="button" value="Edit " onclick=" editRow(this) ">
+                </td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Bilal</td>
+                <td>8
+                    <sup>th</sup>
+                </td>
+                <td>
+                    <input type="button" name="button" value="delete " onclick=" deleteRow(this)  ">
+                </td>
+                <td>
+                    <input type="button" name="button" value="Edit " onclick="editRow(this)">
                 </td>
             </tr>
         </table>
-        </br>
-        <div>        <label>Name</label>
-        <input type="text" name="name" id="name">
-        </br>
-        <label>Qualification</label>
-        <input type="text" name="name" id="class">
-    </br></br>
-        <button class="add-btn" onclick="addRow()">Add</button>
-    </div>
+
+
+
+
+
+
 
 
         <script>
-            var value = 4;
+            var value = 5;
+            var name="";
+var clas = "";
+
             function deleteRow(x) {
                 x.parentElement.parentElement.remove();
-             value--;
+                value--;
+            }
+            function updateRow(x){
+                var currentTr = x.parentElement;
+                var currentTd = x.parentNode;
+                
+                currentTd.innerHTML = '<input type="button" name="button" value="Edit" onclick=" editRow(this) ">';
+                var NameCell = currentTr.parentElement.firstElementChild.nextElementSibling.firstChild.value;
+                var QualificationCell = currentTr.parentElement.firstElementChild.nextElementSibling.nextElementSibling.firstChild.value;
+             
+                currentTr.parentElement.firstElementChild.nextElementSibling.innerHTML = NameCell;
+                currentTr.parentElement.firstElementChild.nextElementSibling.nextElementSibling.innerHTML = QualificationCell;
+
+
             }
 
+            function cancelUpdate(x){
+                var currentTr = x.parentElement;
+                var currentTd = x.parentNode;
+                
+                currentTd.innerHTML = '<input type="button" name="button" value="Edit" onclick=" editRow(this) ">';
+               
+                currentTr.parentElement.firstElementChild.nextElementSibling.innerHTML = name;
+                currentTr.parentElement.firstElementChild.nextElementSibling.nextElementSibling.innerHTML = clas;
+
+                 name="";
+                clas = "";
+            }
+
+
+
+            function editRow(x) {
+                var currentTr = x.parentElement;
+                var currentTd = x.parentNode;
+
+                var NameCell = currentTr.parentElement.firstElementChild.nextElementSibling;
+                var QualificationCell = currentTr.parentElement.firstElementChild.nextElementSibling.nextElementSibling;
+                
+                 name = NameCell.innerText;
+
+                NameCell.innerHTML = "<input type='text' value="+ name +" name='StudentName'>";
+                currentTd.innerHTML =  '<input  type="button" name="button" value="update" onclick="updateRow(this) "> '+
+               ' <input type="button" name="button" value="Cancel" onclick="cancelUpdate(this) ">';
+
+
+                 clas =  QualificationCell.innerText;
+                QualificationCell.innerHTML = "<input type='text' value="+ clas +" name='txtQualification'>";
+//                 '<input style="display:none;" type="button" name="button" value="update" onclick="updateRow(this) "> '+
+  //             ' <input style="display:none;" type="button" name="button" value="Cancel" onclick="cancelUpdate(this) ">
+              
+               
+            }
+
+
+            function ClearForm(){
+                document.getElementById("btnAdd").innerText="Add";
+               document.getElementById('name').value = "";
+                document.getElementById("class").value = "";
+              
+            }
+            
+            function update(){
+
+            }
+
+         
             function addRow() {
+                debugger;
                 var name = document.getElementById('name').value;
                 var clas = document.getElementById("class").value;
                 var table = document.getElementById('my-table');
                 var row = document.createElement('tr');
                 var index = document.createElement('td');
-                value++;
-                index.append(value)
                 var columnName = document.createElement('td');
                 var columnclas = document.createElement('td');
                 var button = document.createElement('td');
-debugger;
-
-                
+                var edit_btn = document.createElement('td');
+                value++;
+                index.append(value)
                 columnName.innerHTML = name;
                 columnclas.innerHTML = clas;
-                button.innerHTML = '<input type="button" name="button"  value="delete row" onclick=" deleteRow(this) ">';
+                button.innerHTML = '<input type="button" name="button" value="delete " onclick=" deleteRow(this) ">';
+                edit_btn.innerHTML = '<input type="button" name="button" value="Edit" onclick=" editRow(this) ">';
+
                 row.appendChild(index);
                 row.appendChild(columnName);
                 row.appendChild(columnclas);
                 row.appendChild(button);
+                row.appendChild(edit_btn);
                 table.appendChild(row);
+                ClearForm();
             }
+
+
+
+
+
 
 
 
